@@ -1,18 +1,20 @@
 package com.intellisense.analyser.web.model;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class SearchRequest {
-    private List<String> searchText;
+	@NotNull
+	private List<String> searchText;
 
-    public SearchRequest() {
-    }
+	public SearchRequest() {
+	}
 
-    public SearchRequest(List<String> searchText) {
-        this.searchText = searchText;
-    }
+	public SearchRequest(List<String> searchText) {
+		this.searchText = searchText;
+	}
 
-    public List<String> getSearchText() {
-        return searchText;
-    }
+	public List<String> getSearchText() {
+		return searchText;
+	}
 }
