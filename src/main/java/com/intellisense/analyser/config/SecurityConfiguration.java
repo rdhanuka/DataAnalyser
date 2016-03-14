@@ -1,4 +1,4 @@
-package com.intellisense.analyser;
+package com.intellisense.analyser.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

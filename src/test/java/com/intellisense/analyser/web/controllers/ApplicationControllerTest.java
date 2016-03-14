@@ -20,6 +20,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -77,5 +78,23 @@ public class ApplicationControllerTest{
         verify(searchService).fetchMaxOccurringWords(maxResult);
     }
 
+    @Test
+    public void shouldNotAllowResultSizeOfNegative() throws Exception {
+        verifyZeroInteractions(searchService);
+        mockMvc.perform(get("/counter-api/top/{count}", -1)
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void shouldNotAllowSearchWithNoText() throws Exception {
+        final SearchRequest request = new SearchRequest(null);
+        verifyZeroInteractions(searchService);
+
+        mockMvc.perform(post("/counter-api/search")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(new ObjectMapper().writeValueAsBytes(request)))
+            .andExpect(status().isBadRequest());
+    }
 
 }

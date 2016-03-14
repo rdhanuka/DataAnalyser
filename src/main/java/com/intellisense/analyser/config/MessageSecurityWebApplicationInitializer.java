@@ -1,4 +1,4 @@
-package com.intellisense.analyser;
+package com.intellisense.analyser.config;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
