@@ -1,2 +1,2 @@
 # DataAnalyser
-Intellisense assignment
+Intelliment assignment
